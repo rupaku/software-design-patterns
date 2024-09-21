@@ -55,5 +55,72 @@ software-design-patterns using Python
   
     If not used judiciously, the added complexity can lead to maintenance challenges, particularly if the patterns are misapplied or overused.
     </details>
+
+    <details>
+      <summary>Adapter Design Pattern</summary>
+
+      The Adapter Design Pattern is a structural design pattern that allows incompatible interfaces to work together. It acts as a bridge between two different interfaces, enabling them to communicate and               function as if they were compatible.
+  
+      - **Key Concepts**
+        - Target Interface: This is the interface that the client expects. It defines the operations that the client can call.
+      
+        - Adaptee: This is the existing class with an incompatible interface. It has functionality that the client needs, but it doesn’t match the expected interface.
+      
+        - Adapter: This is the class that implements the target interface and translates calls to the adaptee's interface. The adapter makes the adaptee’s interface compatible with the target interface.
+      
+      - **Structure**
+      
+          Client
+            |
+          Target Interface
+            |
+           Adapter
+            |
+          Adaptee
+        
+        **Example Scenario**
+      Imagine you have a legacy system that provides temperature readings in Fahrenheit, but you need a system that works with temperature readings in Celsius.
+      
+      1. Target Interface:
+      ```class Temperature:
+          def get_temperature(self) -> float:
+              pass
+      2. Adaptee:
+        class FahrenheitThermometer:
+          def get_fahrenheit(self) -> float:
+              # Returns temperature in Fahrenheit
+              return 100.0  # example value
+      3. Adapter:
+        class CelsiusAdapter(Temperature):
+          def __init__(self, thermometer: FahrenheitThermometer):
+              self.thermometer = thermometer
+          def get_temperature(self) -> float:
+              # Convert Fahrenheit to Celsius
+              fahrenheit = self.thermometer.get_fahrenheit()
+              return (fahrenheit - 32) * 5.0 / 9.0
+         
+      Client Code
+      
+        def print_temperature(temp: Temperature):
+          print(f"The temperature is {temp.get_temperature()}°C.")
+      
+      # Usage
+        fahrenheit_thermometer = FahrenheitThermometer()
+        adapter = CelsiusAdapter(fahrenheit_thermometer)
+        
+        print_temperature(adapter)  # Outputs the temperature in Celsius```
+
+    
+      - **Benefits**
+        Decoupling: The client code is decoupled from the specific implementation of the adaptee, allowing easier modifications.
+        Reusability: You can use existing classes without modifying their code.
+        Flexibility: You can introduce new classes without affecting the client, as long as they adhere to the target interface.
+      
+      - **When to Use**
+        When you want to use some existing code, but its interface does not match the one you need.
+        When you want to create a reusable class that cooperates with unrelated or unforeseen classes.
+        The Adapter Pattern is a powerful way to integrate disparate systems and enhance the functionality of existing code with minimal disruption.
+    </details>
+    </details>
   </details>
     
