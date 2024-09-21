@@ -122,5 +122,6 @@ software-design-patterns using Python
         The Adapter Pattern is a powerful way to integrate disparate systems and enhance the functionality of existing code with minimal disruption.
     </details>
     </details>
+    
   </details>
     
