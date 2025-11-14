@@ -1,3 +1,8 @@
+"""
+    To capture and restore an object’s internal state without violating its encapsulation,
+    so you can undo or rollback changes when needed.
+
+"""
 
 #Memento
 class PizzaMemento:
